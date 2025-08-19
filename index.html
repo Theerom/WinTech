@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultimate Tech Giveaway | Win $5000 in Prizes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #ff6b6b;
+      --secondary: #4ecdc4;
+      --accent: #ffd166;
+      --dark: #1a1a2e;
+      --darker: #0f0f1c;
+      --light: #f7f9fc;
+      --transition: all 0.3s ease;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--darker), var(--dark));
+      color: var(--light);
+      line-height:1.6;
+      overflow-x: hidden;
+    }
+    .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+    header {
+      padding:20px 0; position:fixed; width:100%; z-index:1000;
+      background: rgba(26,26,46,0.95); backdrop-filter: blur(10px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    .header-content { display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-size:28px; font-weight:800; color:var(--accent); text-decoration:none; display:flex; gap:10px; align-items: center; }
+    .nav-links { display:flex; gap:20px; }
+    .nav-links a { color:var(--light); text-decoration:none; padding:8px 15px; border-radius:50px; transition: var(--transition); }
+    .nav-links a:hover { background: rgba(255,255,255,0.1); }
+    .nav-links a:last-child { background:var(--primary); color:white; }
+    .nav-links a:last-child:hover { background: #ff5252; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,107,107,0.4); }
+    
+    /* Mobile menu */
+    .mobile-menu-btn { display: none; font-size: 24px; background: none; border: none; color: white; cursor: pointer; }
+    
+    /* Hero section */
+    .hero { padding:160px 0 80px; text-align:center; position: relative; overflow: hidden; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,209,102,0.1) 0%, transparent 70%);
+      animation: pulse 15s infinite alternate;
+      z-index: -1;
+    }
+    @keyframes pulse {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+      100% { transform: translate(10%, 10%) scale(1.2); opacity: 0.8; }
+    }
+    .hero h1 { 
+      font-size:3.5rem; 
+      background:linear-gradient(to right,var(--accent),var(--primary));
+      -webkit-background-clip:text; 
+      -webkit-text-fill-color:transparent;
+      margin-bottom: 20px;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .hero p { 
+      margin:20px auto; 
+      max-width:600px; 
+      font-size: 1.2rem;
+    }
+    .btn { 
+      padding:16px 35px; 
+      background:linear-gradient(to right,var(--primary),var(--secondary)); 
+      border-radius:50px;
+      color:white; 
+      text-decoration:none; 
+      font-weight:600;
+      display: inline-block;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+    .btn:hover::before {
+      left: 100%;
+    }
+    .btn:hover { transform:translateY(-5px); box-shadow: 0 10px 20px rgba(255,107,107,0.6); }
+    
+    /* Countdown timer */
+    .countdown { 
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+    }
+    .countdown-item {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 15px;
+      min-width: 80px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .countdown-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .countdown-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Prize section */
+    .prize-section { padding: 80px 0; }
+    .section-title { 
+      text-align:center; 
+      font-size:2.5rem; 
+      margin-bottom:50px; 
+      color:var(--accent);
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+    .prize-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .prize-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 25px;
+      width: 220px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .prize-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border-color: var(--accent);
+    }
+    .prize-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+    .prize-name {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--light);
+    }
+    .prize-value {
+      color: var(--secondary);
+      font-weight: 700;
+    }
+    
+    /* Steps section */
+    .steps-section { padding: 80px 0; background: rgba(0,0,0,0.1); }
+    .steps-container { 
+      display:flex; 
+      justify-content:center; 
+      flex-wrap:wrap; 
+      gap:30px; 
+      margin-top: 40px;
+    }
+    .step-card {
+      background:rgba(255,255,255,0.05); 
+      padding:30px 20px; 
+      border-radius:15px; 
+      text-align:center;
+      width:250px; 
+      border:1px solid rgba(255,255,255,0.1);
+      transition: var(--transition);
+      position: relative;
+    }
+    .step-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .step-number {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+    }
+    .step-icon {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+    
+    /* Testimonials */
+    .testimonials-section { padding: 80px 0; }
+    .testimonial-container { 
+      display:flex; 
+      justify-content:center; 
+      flex-wrap:wrap; 
+      gap:30px; 
+      margin-top: 40px;
+    }
+    .testimonial-card {
+      background:rgba(255,255,255,0.05); 
+      padding:25px; 
+      border-radius:15px; 
+      text-align:center;
+      width:300px; 
+      border:1px solid rgba(255,255,255,0.1);
+      transition: var(--transition);
+    }
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .testimonial-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      margin: 0 auto 15px;
+    }
+    .testimonial-text { 
+      font-style:italic; 
+      margin-bottom:15px; 
+      position: relative;
+      padding: 0 10px;
+    }
+    .testimonial-text::before,
+    .testimonial-text::after {
+      content: '"';
+      font-size: 3rem;
+      color: var(--accent);
+      opacity: 0.3;
+      position: absolute;
+    }
+    .testimonial-text::before {
+      top: -20px;
+      left: -10px;
+    }
+    .testimonial-text::after {
+      bottom: -40px;
+      right: -10px;
+    }
+    .testimonial-name {
+      color: var(--accent);
+      font-weight: 700;
+      margin-top: 20px;
+    }
+    .testimonial-role {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    /* CTA Section */
+    .cta-section { 
+      padding: 80px 0; 
+      background: rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .entry-form-container {
+      background: rgba(255,255,255,0.08); 
+      border-radius:15px; 
+      padding:40px; 
+      margin:30px auto; 
+      max-width:500px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .form-group { 
+      margin-bottom:20px; 
+      text-align:left; 
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .form-group input { 
+      width:100%; 
+      padding:15px; 
+      border-radius:8px; 
+      border:1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.2);
+      color: white;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,209,102,0.3);
+    }
+    .locked-message {
+      background: rgba(255,255,255,0.05);
+      border: 1px dashed var(--accent);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      max-width: 500px;
+      margin: 20px auto;
+      color: rgba(255,255,255,0.7);
+    }
+    .locked-message.hidden { display: none; }
+    
+    /* Confirmation message */
+    .confirmation { 
+      display:none; 
+      margin-top:25px; 
+      background:rgba(78,205,196,0.2); 
+      padding:20px; 
+      border-radius:10px; 
+      text-align:center;
+      border: 1px solid var(--secondary);
+    }
+    .confirmation.show { display:block; animation: fadeIn 0.5s ease; }
+    
+    /* CPA Locker Modal */
+    .locker-modal {
+      display:none; 
+      position:fixed; 
+      z-index:2000; 
+      left:0; 
+      top:0; 
+      width:100%; 
+      height:100%;
+      background:rgba(0,0,0,0.9); 
+      justify-content:center; 
+      align-items:center;
+      flex-direction: column;
+      backdrop-filter: blur(5px);
+    }
+    .locker-modal.show { display: flex; animation: fadeIn 0.3s ease; }
+    .locker-content { 
+      background:var(--darker); 
+      padding:30px; 
+      border-radius:15px; 
+      max-width:800px; 
+      width:90%; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .close-modal:hover {
+      color: var(--primary);
+      transform: rotate(90deg);
+    }
+    .locker-iframe-container {
+      position: relative;
+      padding-bottom: 75%; /* 4:3 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    #locker-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+    .locker-instructions {
+      text-align: center;
+      margin-top: 20px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--darker);
+      padding: 40px 0 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+    }
+    .footer-column h3 {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 5px;
+    }
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--dark);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .countdown-item {
+        min-width: 60px;
+        padding: 10px;
+      }
+      .countdown-number {
+        font-size: 1.5rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .entry-form-container {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <a href="#" class="logo"><i class="fas fa-gift"></i>WinTech</a>
+      <button class="mobile-menu-btn" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#prize">Prize</a>
+        <a href="#how-to-enter">How to Enter</a>
+        <a href="#testimonials">Winners</a>
+        <a href="#enter-now">Enter Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Win the Ultimate Tech Bundle Worth $5,000!</h1>
+      <p>Enter now for your chance to win the ultimate tech package including the latest smartphone, laptop, smartwatch, and more!</p>
+      
+      <div class="countdown">
+        <div class="countdown-item">
+          <div class="countdown-number" id="days">00</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="hours">00</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="minutes">00</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="seconds">00</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+      
+      <a href="#" class="btn" id="open-locker">Enter Now <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Prize -->
+  <section id="prize" class="prize-section">
+    <div class="container">
+      <h2 class="section-title">The Prize</h2>
+      <p style="text-align:center; max-width: 800px; margin: 0 auto 40px;">Our lucky winner will receive this incredible tech bundle featuring the latest gadgets and accessories to supercharge your digital life!</p>
+      
+      <div class="prize-container">
+        <div class="prize-item">
+          <div class="prize-icon"><i class="fas fa-laptop"></i></div>
+          <h3 class="prize-name">Premium Laptop</h3>
+          <p class="prize-value">$2,500 Value</p>
+        </div>
+        <div class="prize-item">
+          <div class="prize-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3 class="prize-name">Flagship Smartphone</h3>
+          <p class="prize-value">$1,200 Value</p>
+        </div>
+        <div class="prize-item">
+          <div class="prize-icon"><i class="fas fa-clock"></i></div>
+          <h3 class="prize-name">Smart Watch</h3>
+          <p class="prize-value">$500 Value</p>
+        </div>
+        <div class="prize-item">
+          <div class="prize-icon"><i class="fas fa-headphones"></i></div>
+          <h3 class="prize-name">Wireless Headphones</h3>
+          <p class="prize-value">$300 Value</p>
+        </div>
+        <div class="prize-item">
+          <div class="prize-icon"><i class="fas fa-gift"></i></div>
+          <h3 class="prize-name">Gift Card</h3>
+          <p class="prize-value">$500 Value</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Enter -->
+  <section id="how-to-enter" class="steps-section">
+    <div class="container">
+      <h2 class="section-title">How to Enter</h2>
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-icon"><i class="fas fa-user-edit"></i></div>
+          <h3>Enter Your Details</h3>
+          <p>Fill out the entry form with your information.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-icon"><i class="fas fa-tasks"></i></div>
+          <h3>Complete Task</h3>
+          <p>Finish the quick CPA locker offer.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-icon"><i class="fas fa-envelope"></i></div>
+          <h3>Confirm Entry</h3>
+          <p>Check your email for confirmation.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-icon"><i class="fas fa-trophy"></i></div>
+          <h3>Wait & Win</h3>
+          <p>Winner will be announced soon!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials-section">
+    <div class="container">
+      <h2 class="section-title">Past Winners</h2>
+      <div class="testimonial-container">
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="testimonial-avatar">
+          <div class="testimonial-text">"I couldn't believe I won! The tech bundle completely upgraded my setup. The laptop is incredibly fast, and the smartphone has an amazing camera!"</div>
+          <h4 class="testimonial-name">Sarah Johnson</h4>
+          <p class="testimonial-role">January 2024 Winner</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Michael Chen" class="testimonial-avatar">
+          <div class="testimonial-text">"As a content creator, this prize package was a game-changer for me. The equipment is top-notch and has helped me take my work to the next level."</div>
+          <h4 class="testimonial-name">Michael Chen</h4>
+          <p class="testimonial-role">November 2023 Winner</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jessica Williams" class="testimonial-avatar">
+          <div class="testimonial-text">"I've never won anything before this! The process was simple and the prizes arrived quickly. The headphones are my favorite - amazing sound quality!"</div>
+          <h4 class="testimonial-name">Jessica Williams</h4>
+          <p class="testimonial-role">August 2023 Winner</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="enter-now" class="cta-section">
+    <div class="container">
+      <h2 style="text-align:center;">Enter to Win Today!</h2>
+      <p style="text-align:center; margin-bottom: 30px;">Don't miss your chance to win this amazing tech bundle. Enter now!</p>
+      
+      <div class="locked-message" id="locked-message">
+        <i class="fas fa-lock" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+        <h3>Complete the offer to unlock the entry form</h3>
+        <p>Click the "Enter Now" button above to complete the quick offer and unlock the entry form</p>
+      </div>
+      
+      <div class="entry-form-container" id="entry-form">
+        <form id="giveaway-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required placeholder="Enter your full name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required placeholder="Enter your email address">
+          </div>
+          <button type="submit" class="btn">Submit Entry</button>
+        </form>
+        <div class="confirmation" id="confirmation">
+          <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--secondary); margin-bottom: 15px;"></i>
+          <h3>Entry Submitted Successfully!</h3>
+          <p>We've sent a confirmation email to your inbox. Good luck!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CPA Locker Modal -->
+  <div id="locker-modal" class="locker-modal">
+    <div class="locker-content">
+      <button class="close-modal" id="close-locker">&times;</button>
+      <h2 style="text-align: center; margin-bottom: 20px; color: var(--accent);">Complete to Unlock</h2>
+      <p style="text-align: center; margin-bottom: 20px;">Please complete the quick offer below to unlock the entry form</p>
+      
+      <div class="locker-iframe-container">
+        <iframe id="locker-iframe" src="https://bestlocker.eu/iframe/0ac03b86-7c5f-11f0-bb3c-8a5fb7be40ea"></iframe>
+      </div>
+      
+      <p class="locker-instructions">After completion, close this window to return to the entry form</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>WinTech Giveaways</h3>
+          <p>We offer exciting tech giveaways with amazing prizes. Enter for your chance to win today!</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#prize">Current Giveaway</a></li>
+            <li><a href="#how-to-enter">How to Enter</a></li>
+            <li><a href="#testimonials">Past Winners</a></li>
+            <li><a href="#enter-now">Enter Now</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <ul class="footer-links">
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Official Rules</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2024 WinTech Giveaways. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu').addEventListener('click', function() {
+      document.getElementById('nav-links').classList.toggle('active');
+    });
+
+    // Countdown timer
+    function updateCountdown() {
+      const now = new Date();
+      const endDate = new Date(now.getFullYear(), now.getMonth() + 1, 1); // Set to 1st of next month
+      
+      const diff = endDate - now;
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // CPA Locker Modal
+    const lockerModal = document.getElementById("locker-modal");
+    const entryForm = document.getElementById("entry-form");
+    const lockedMessage = document.getElementById("locked-message");
+    const openLockerBtn = document.getElementById("open-locker");
+    const closeLockerBtn = document.getElementById("close-locker");
+    
+    // Initially hide the form and show locked message
+    entryForm.style.display = "none";
+    lockedMessage.classList.remove("hidden");
+    
+    // Check if user has already completed the offer (from localStorage)
+    if (localStorage.getItem('offerCompleted')) {
+      entryForm.style.display = "block";
+      lockedMessage.classList.add("hidden");
+    }
+    
+    openLockerBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      lockerModal.classList.add("show");
+    });
+    
+    closeLockerBtn.addEventListener("click", function() {
+      lockerModal.classList.remove("show");
+    });
+    
+    // Close modal when clicking outside
+    window.addEventListener("click", function(e) {
+      if (e.target === lockerModal) {
+        lockerModal.classList.remove("show");
+      }
+    });
+    
+    // Listen for messages from the iframe (if the locker supports it)
+    window.addEventListener('message', function(event) {
+      // For security, verify the origin if possible
+      // if (event.origin !== "https://bestlocker.eu") return;
+      
+      if (event.data === 'offerCompleted') {
+        // Unlock the form
+        entryForm.style.display = "block";
+        lockedMessage.classList.add("hidden");
+        lockerModal.classList.remove("show");
+        
+        // Store in localStorage so form remains unlocked
+        localStorage.setItem('offerCompleted', 'true');
+      }
+    });
+    
+    // Fallback: Check if the iframe URL changes (some lockers redirect upon completion)
+    let lastIframeUrl = '';
+    setInterval(() => {
+      try {
+        const iframe = document.getElementById('locker-iframe');
+        const currentUrl = iframe.contentWindow.location.href;
+        
+        if (currentUrl !== lastIframeUrl) {
+          lastIframeUrl = currentUrl;
+          
+          // If the URL changes to a completion page (this will vary by locker)
+          if (currentUrl.includes('complete') || currentUrl.includes('success')) {
+            // Unlock the form
+            entryForm.style.display = "block";
+            lockedMessage.classList.add("hidden");
+            lockerModal.classList.remove("show");
+            
+            // Store in localStorage
+            localStorage.setItem('offerCompleted', 'true');
+          }
+        }
+      } catch (e) {
+        // Cross-origin errors are expected, ignore them
+      }
+    }, 1000);
+
+    // Google Sheets Submission
+    document.getElementById('giveaway-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      
+      // Show loading state
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      submitBtn.disabled = true;
+      
+      try {
+        // Using FormData approach as it's more reliable for Google Apps Script
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        
+        await fetch("https://script.google.com/macros/s/AKfycbwiv68IDmp2W1_ipYJMwIJ0Q9OEAAUphDAW6OAUn03utdehPft4JxFHn2yePe2OIgkH/exec", {
+          method: "POST",
+          body: formData
+        });
+        
+        document.getElementById('confirmation').classList.add('show');
+        this.reset();
+        
+        // Hide the form after successful submission
+        this.style.display = 'none';
+      } catch (error) {
+        alert("Error submitting entry. Please try again.");
+      } finally {
+        // Reset button state
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
