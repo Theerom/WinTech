@@ -1,900 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ultimate Tech Giveaway | Win $5000 in Prizes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claim Your $100 Walmart Gift Card | Limited Time Offer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #ff6b6b;
-      --secondary: #4ecdc4;
-      --accent: #ffd166;
-      --dark: #1a1a2e;
-      --darker: #0f0f1c;
-      --light: #f7f9fc;
-      --transition: all 0.3s ease;
+      --primary: #0071ce;
+      --primary-dark: #005da3;
+      --accent: #ffc220;
+      --dark: #1a1a1a;
+      --light: #ffffff;
+      --gray: #6c757d;
+      --gradient: linear-gradient(90deg, #4c9aff, #00ffcc, #00ff88);
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, var(--darker), var(--dark));
-      color: var(--light);
-      line-height:1.6;
-      overflow-x: hidden;
-    }
-    .container { max-width:1200px; margin:0 auto; padding:0 20px; }
-    header {
-      padding:20px 0; position:fixed; width:100%; z-index:1000;
-      background: rgba(26,26,46,0.95); backdrop-filter: blur(10px);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    }
-    .header-content { display:flex; justify-content:space-between; align-items:center; }
-    .logo { font-size:28px; font-weight:800; color:var(--accent); text-decoration:none; display:flex; gap:10px; align-items: center; }
-    .nav-links { display:flex; gap:20px; }
-    .nav-links a { color:var(--light); text-decoration:none; padding:8px 15px; border-radius:50px; transition: var(--transition); }
-    .nav-links a:hover { background: rgba(255,255,255,0.1); }
-    .nav-links a:last-child { background:var(--primary); color:white; }
-    .nav-links a:last-child:hover { background: #ff5252; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,107,107,0.4); }
-    
-    /* Mobile menu */
-    .mobile-menu-btn { display: none; font-size: 24px; background: none; border: none; color: white; cursor: pointer; }
-    
-    /* Hero section */
-    .hero { padding:160px 0 80px; text-align:center; position: relative; overflow: hidden; }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,209,102,0.1) 0%, transparent 70%);
-      animation: pulse 15s infinite alternate;
-      z-index: -1;
-    }
-    @keyframes pulse {
-      0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
-      100% { transform: translate(10%, 10%) scale(1.2); opacity: 0.8; }
-    }
-    .hero h1 { 
-      font-size:3.5rem; 
-      background:linear-gradient(to right,var(--accent),var(--primary));
-      -webkit-background-clip:text; 
-      -webkit-text-fill-color:transparent;
-      margin-bottom: 20px;
-      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    .hero p { 
-      margin:20px auto; 
-      max-width:600px; 
-      font-size: 1.2rem;
-    }
-    .btn { 
-      padding:16px 35px; 
-      background:linear-gradient(to right,var(--primary),var(--secondary)); 
-      border-radius:50px;
-      color:white; 
-      text-decoration:none; 
-      font-weight:600;
-      display: inline-block;
-      transition: var(--transition);
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255,107,107,0.4);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
-    }
-    .btn:hover::before {
-      left: 100%;
-    }
-    .btn:hover { transform:translateY(-5px); box-shadow: 0 10px 20px rgba(255,107,107,0.6); }
-    
-    /* Countdown timer */
-    .countdown { 
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 30px 0;
-    }
-    .countdown-item {
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 15px;
-      min-width: 80px;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .countdown-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .countdown-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    /* Prize section */
-    .prize-section { padding: 80px 0; }
-    .section-title { 
-      text-align:center; 
-      font-size:2.5rem; 
-      margin-bottom:50px; 
-      color:var(--accent);
-      position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      border-radius: 2px;
-    }
-    .prize-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 40px;
-    }
-    .prize-item {
-      background: rgba(255,255,255,0.05);
-      border-radius: 15px;
-      padding: 25px;
-      width: 220px;
-      text-align: center;
-      transition: var(--transition);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .prize-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      border-color: var(--accent);
-    }
-    .prize-icon {
-      font-size: 3rem;
-      color: var(--accent);
-      margin-bottom: 15px;
-    }
-    .prize-name {
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: var(--light);
-    }
-    .prize-value {
-      color: var(--secondary);
-      font-weight: 700;
-    }
-    
-    /* Steps section */
-    .steps-section { padding: 80px 0; background: rgba(0,0,0,0.1); }
-    .steps-container { 
-      display:flex; 
-      justify-content:center; 
-      flex-wrap:wrap; 
-      gap:30px; 
-      margin-top: 40px;
-    }
-    .step-card {
-      background:rgba(255,255,255,0.05); 
-      padding:30px 20px; 
-      border-radius:15px; 
-      text-align:center;
-      width:250px; 
-      border:1px solid rgba(255,255,255,0.1);
-      transition: var(--transition);
-      position: relative;
-    }
-    .step-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-    .step-number {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
-      background: var(--primary);
+      font-family: 'Poppins', sans-serif;
       color: white;
-      border-radius: 50%;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.2rem;
-      box-shadow: 0 5px 15px rgba(255,107,107,0.4);
-    }
-    .step-icon {
-      font-size: 2.5rem;
-      color: var(--secondary);
-      margin-bottom: 15px;
-    }
-    
-    /* Testimonials */
-    .testimonials-section { padding: 80px 0; }
-    .testimonial-container { 
-      display:flex; 
-      justify-content:center; 
-      flex-wrap:wrap; 
-      gap:30px; 
-      margin-top: 40px;
-    }
-    .testimonial-card {
-      background:rgba(255,255,255,0.05); 
-      padding:25px; 
-      border-radius:15px; 
-      text-align:center;
-      width:300px; 
-      border:1px solid rgba(255,255,255,0.1);
-      transition: var(--transition);
-    }
-    .testimonial-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-    .testimonial-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent);
-      margin: 0 auto 15px;
-    }
-    .testimonial-text { 
-      font-style:italic; 
-      margin-bottom:15px; 
-      position: relative;
-      padding: 0 10px;
-    }
-    .testimonial-text::before,
-    .testimonial-text::after {
-      content: '"';
-      font-size: 3rem;
-      color: var(--accent);
-      opacity: 0.3;
-      position: absolute;
-    }
-    .testimonial-text::before {
-      top: -20px;
-      left: -10px;
-    }
-    .testimonial-text::after {
-      bottom: -40px;
-      right: -10px;
-    }
-    .testimonial-name {
-      color: var(--accent);
-      font-weight: 700;
-      margin-top: 20px;
-    }
-    .testimonial-role {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-    
-    /* CTA Section */
-    .cta-section { 
-      padding: 80px 0; 
-      background: rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .entry-form-container {
-      background: rgba(255,255,255,0.08); 
-      border-radius:15px; 
-      padding:40px; 
-      margin:30px auto; 
-      max-width:500px;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    .form-group { 
-      margin-bottom:20px; 
-      text-align:left; 
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .form-group input { 
-      width:100%; 
-      padding:15px; 
-      border-radius:8px; 
-      border:1px solid rgba(255,255,255,0.2);
-      background: rgba(0,0,0,0.2);
-      color: white;
-      font-size: 1rem;
-      transition: var(--transition);
-    }
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(255,209,102,0.3);
-    }
-    .locked-message {
-      background: rgba(255,255,255,0.05);
-      border: 1px dashed var(--accent);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      max-width: 500px;
-      margin: 20px auto;
-      color: rgba(255,255,255,0.7);
-    }
-    .locked-message.hidden { display: none; }
-    
-    /* Confirmation message */
-    .confirmation { 
-      display:none; 
-      margin-top:25px; 
-      background:rgba(78,205,196,0.2); 
-      padding:20px; 
-      border-radius:10px; 
-      text-align:center;
-      border: 1px solid var(--secondary);
-    }
-    .confirmation.show { display:block; animation: fadeIn 0.5s ease; }
-    
-    /* CPA Locker Modal */
-    .locker-modal {
-      display:none; 
-      position:fixed; 
-      z-index:2000; 
-      left:0; 
-      top:0; 
-      width:100%; 
-      height:100%;
-      background:rgba(0,0,0,0.9); 
-      justify-content:center; 
-      align-items:center;
       flex-direction: column;
-      backdrop-filter: blur(5px);
-    }
-    .locker-modal.show { display: flex; animation: fadeIn 0.3s ease; }
-    .locker-content { 
-      background:var(--darker); 
-      padding:30px; 
-      border-radius:15px; 
-      max-width:800px; 
-      width:90%; 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.1);
+      align-items: center;
+      padding: 0;
+      overflow-x: hidden;
+      animation: fadeIn 1.2s ease-in-out;
       position: relative;
+      min-height: 100vh;
     }
-    .close-modal {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .close-modal:hover {
-      color: var(--primary);
-      transform: rotate(90deg);
-    }
-    .locker-iframe-container {
-      position: relative;
-      padding-bottom: 75%; /* 4:3 aspect ratio */
-      height: 0;
-      overflow: hidden;
-      border-radius: 10px;
-    }
-    #locker-iframe {
-      position: absolute;
+
+    .background-image {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      border: none;
-      border-radius: 10px;
+      z-index: -1;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                  url('https://lh3.googleusercontent.com/pw/AP1GczPMC9IlnZ01DVtnaj46ym2lmrfD5dhmwzNe7UOp1hKPpmEILIKtTU6mo23fiExoqc7tRBUeZc7t3kbQn_pXY8ndySHcHe-WCyIwzuKmGJYrVI5Mww=w2400') no-repeat center center;
+      background-size: cover;
     }
-    .locker-instructions {
-      text-align: center;
-      margin-top: 20px;
-      color: var(--accent);
-      font-weight: 600;
+
+    header { 
+      width: 100%; 
+      padding: 20px; 
+      text-align: center; 
+      background: rgba(255, 255, 255, 0.05); 
+      backdrop-filter: blur(12px); 
+      position: sticky; 
+      top: 0; 
+      z-index: 50; 
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    /* Footer */
-    footer {
-      background: var(--darker);
-      padding: 40px 0 20px;
-      border-top: 1px solid rgba(255,255,255,0.1);
+    .container { 
+      width: 100%; 
+      max-width: 1200px; 
+      text-align: center; 
+      padding: 40px 20px; 
+      margin: 0 auto;
     }
-    .footer-content {
-      display: flex;
+    
+    h1 { 
+      font-size: 3rem; 
+      font-weight: 700; 
+      background: var(--gradient); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      margin-bottom: 20px; 
+      letter-spacing: 1px; 
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    p { 
+      font-size: 1.2rem; 
+      opacity: 0.9; 
+      margin-bottom: 30px; 
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .card { 
+      background: rgba(0, 0, 0, 0.6); 
+      border-radius: 22px; 
+      padding: 30px; 
+      margin-top: 20px; 
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45); 
+      backdrop-filter: blur(18px); 
+      transition: transform 0.4s ease, box-shadow 0.4s ease; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      width: 100%; 
+      max-width: 900px; 
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .card:hover { 
+      transform: scale(1.03); 
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); 
+    }
+    
+    .gift-img { 
+      width: 100%; 
+      max-width: 500px; 
+      height: auto; 
+      border-radius: 18px; 
+      margin-bottom: 20px; 
+      animation: pulse 3s infinite ease-in-out; 
+      object-fit: contain; 
+    }
+    
+    .cta-btn { 
+      display: inline-block; 
+      padding: 16px 35px; 
+      border: none; 
+      border-radius: 50px; 
+      background: var(--gradient); 
+      font-size: 1.35rem; 
+      color: #000; 
+      cursor: pointer; 
+      margin-top: 15px; 
+      font-weight: 600; 
+      text-decoration: none; 
+      transition: 0.3s; 
+      box-shadow: 0 0 15px rgba(0, 255, 200, 0.5); 
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-btn:hover { 
+      opacity: 0.85; 
+      box-shadow: 0 0 22px rgba(0, 255, 200, 0.8); 
+      transform: translateY(-3px); 
+    }
+    
+    .cta-btn:after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 20%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(30deg);
+      transition: all 0.6s;
+    }
+    
+    .cta-btn:hover:after {
+      left: 120%;
+    }
+    
+    footer { 
+      margin-top: 40px; 
+      opacity: 0.5; 
+      font-size: 0.9rem; 
+      text-align: center; 
+      padding-bottom: 40px; 
+      width: 100%;
+    }
+    
+    .countdown { 
+      margin-top: 35px; 
+      font-size: 1.6rem; 
+      font-weight: 600; 
+      background: rgba(255, 255, 255, 0.08); 
+      padding: 15px 25px; 
+      border-radius: 15px; 
+      display: inline-block; 
+      backdrop-filter: blur(10px); 
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .testimonials { 
+      margin-top: 45px; 
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .testimonial-title {
+      font-size: 1.8rem; 
+      margin-bottom: 20px; 
+      color: #00ffcc; 
+    }
+    
+    .testimonial-item {
+      background: rgba(255, 255, 255, 0.05); 
+      padding: 18px; 
+      border-radius: 15px; 
+      backdrop-filter: blur(10px); 
+      margin-bottom: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .testimonial-item:hover {
+      transform: translateX(10px);
+    }
+    
+    .trust { 
+      margin-top: 40px; 
+      display: flex; 
+      justify-content: center; 
+      gap: 20px; 
+      opacity: 0.8; 
       flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 40px;
-      margin-bottom: 30px;
     }
-    .footer-column {
-      flex: 1;
-      min-width: 250px;
-    }
-    .footer-column h3 {
-      color: var(--accent);
-      margin-bottom: 20px;
-      font-size: 1.2rem;
-    }
-    .footer-links {
-      list-style: none;
-    }
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-    .footer-links a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    .footer-links a:hover {
-      color: var(--accent);
-      padding-left: 5px;
-    }
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 15px;
-    }
-    .social-links a {
+    
+    .trust-badge {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      color: white;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    .social-links a:hover {
-      background: var(--primary);
-      transform: translateY(-3px);
-    }
-    .copyright {
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.5);
-      font-size: 0.9rem;
+      font-size: 2rem;
+      transition: transform 0.3s ease;
     }
     
-    /* Animations */
+    .trust-badge:hover {
+      transform: scale(1.1);
+    }
+    
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
     
-    /* Responsive styles */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--dark);
-        flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .mobile-menu-btn {
-        display: block;
-      }
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .countdown-item {
-        min-width: 60px;
-        padding: 10px;
-      }
-      .countdown-number {
-        font-size: 1.5rem;
-      }
-      .section-title {
-        font-size: 2rem;
-      }
-      .entry-form-container {
-        padding: 25px;
-      }
+    @keyframes pulse { 
+      0%, 100% { transform: scale(1); } 
+      50% { transform: scale(1.05); } 
+    }
+    
+    @keyframes spin { 
+      to { transform: rotate(360deg); } 
+    }
+    
+    @media (max-width: 768px) { 
+      h1 { font-size: 2.2rem; } 
+      p { font-size: 1rem; } 
+      .cta-btn { font-size: 1.1rem; padding: 14px 28px; } 
+      .card { padding: 20px; } 
+      .gift-img { max-width: 100%; } 
+      .countdown { font-size: 1.3rem; }
+      .testimonial-title { font-size: 1.5rem; }
+    }
+    
+    #loadingScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.3s;
+    }
+    
+    #loadingMessage {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #00ffcc;
+      font-weight: 600;
+      text-align: center;
+      padding: 0 20px;
+    }
+    
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid #ffffff33;
+      border-top-color: #00ffcc;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #f00;
+      opacity: 0;
+    }
+    
+    .benefits {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .benefit {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .benefit:hover {
+      transform: translateY(-5px);
+    }
+    
+    .benefit i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #00ffcc;
+    }
+    
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .step {
+      text-align: center;
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin: 0 auto 15px;
+    }
+    
+    .step h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .step p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Background Image -->
+  <div class="background-image"></div>
+  
   <header>
-    <div class="container header-content">
-      <a href="#" class="logo"><i class="fas fa-gift"></i>WinTech</a>
-      <button class="mobile-menu-btn" id="mobile-menu">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="nav-links" id="nav-links">
-        <a href="#prize">Prize</a>
-        <a href="#how-to-enter">How to Enter</a>
-        <a href="#testimonials">Winners</a>
-        <a href="#enter-now">Enter Now</a>
-      </div>
-    </div>
+    <h2>Exclusive Reward Event</h2>
   </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <h1>Win the Ultimate Tech Bundle Worth $5,000!</h1>
-      <p>Enter now for your chance to win the ultimate tech package including the latest smartphone, laptop, smartwatch, and more!</p>
-      
-      <div class="countdown">
-        <div class="countdown-item">
-          <div class="countdown-number" id="days">00</div>
-          <div class="countdown-label">Days</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="hours">00</div>
-          <div class="countdown-label">Hours</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="minutes">00</div>
-          <div class="countdown-label">Minutes</div>
-        </div>
-        <div class="countdown-item">
-          <div class="countdown-number" id="seconds">00</div>
-          <div class="countdown-label">Seconds</div>
-        </div>
+  
+  <div class="container">
+    <h1>Claim Your $100 Walmart Gift Card!</h1>
+    <p>Complete a quick survey and get a Walmart Gift Card instantly. Limited time only — don't miss out!</p>
+    
+    <div class="benefits">
+      <div class="benefit">
+        <i class="fas fa-bolt"></i>
+        <h3>Instant Delivery</h3>
+        <p>Get your gift card via email immediately after completion</p>
       </div>
-      
-      <a href="#" class="btn" id="open-locker">Enter Now <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </section>
-
-  <!-- Prize -->
-  <section id="prize" class="prize-section">
-    <div class="container">
-      <h2 class="section-title">The Prize</h2>
-      <p style="text-align:center; max-width: 800px; margin: 0 auto 40px;">Our lucky winner will receive this incredible tech bundle featuring the latest gadgets and accessories to supercharge your digital life!</p>
-      
-      <div class="prize-container">
-        <div class="prize-item">
-          <div class="prize-icon"><i class="fas fa-laptop"></i></div>
-          <h3 class="prize-name">Premium Laptop</h3>
-          <p class="prize-value">$2,500 Value</p>
-        </div>
-        <div class="prize-item">
-          <div class="prize-icon"><i class="fas fa-mobile-alt"></i></div>
-          <h3 class="prize-name">Flagship Smartphone</h3>
-          <p class="prize-value">$1,200 Value</p>
-        </div>
-        <div class="prize-item">
-          <div class="prize-icon"><i class="fas fa-clock"></i></div>
-          <h3 class="prize-name">Smart Watch</h3>
-          <p class="prize-value">$500 Value</p>
-        </div>
-        <div class="prize-item">
-          <div class="prize-icon"><i class="fas fa-headphones"></i></div>
-          <h3 class="prize-name">Wireless Headphones</h3>
-          <p class="prize-value">$300 Value</p>
-        </div>
-        <div class="prize-item">
-          <div class="prize-icon"><i class="fas fa-gift"></i></div>
-          <h3 class="prize-name">Gift Card</h3>
-          <p class="prize-value">$500 Value</p>
-        </div>
+      <div class="benefit">
+        <i class="fas fa-shield-alt"></i>
+        <h3>100% Secure</h3>
+        <p>Your information is protected with bank-level encryption</p>
+      </div>
+      <div class="benefit">
+        <i class="fas fa-gift"></i>
+        <h3>No Hidden Fees</h3>
+        <p>Completely free with no obligations or commitments</p>
       </div>
     </div>
-  </section>
-
-  <!-- How to Enter -->
-  <section id="how-to-enter" class="steps-section">
-    <div class="container">
-      <h2 class="section-title">How to Enter</h2>
-      <div class="steps-container">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <div class="step-icon"><i class="fas fa-user-edit"></i></div>
-          <h3>Enter Your Details</h3>
-          <p>Fill out the entry form with your information.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <div class="step-icon"><i class="fas fa-tasks"></i></div>
-          <h3>Complete Task</h3>
-          <p>Finish the quick CPA locker offer.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <div class="step-icon"><i class="fas fa-envelope"></i></div>
-          <h3>Confirm Entry</h3>
-          <p>Check your email for confirmation.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <div class="step-icon"><i class="fas fa-trophy"></i></div>
-          <h3>Wait & Win</h3>
-          <p>Winner will be announced soon!</p>
-        </div>
+    
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Sign Up</h3>
+        <p>Create your free account in seconds</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Complete Offer</h3>
+        <p>Finish a simple survey or trial</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Get Reward</h3>
+        <p>Receive your $100 Walmart gift card</p>
       </div>
     </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section id="testimonials" class="testimonials-section">
-    <div class="container">
-      <h2 class="section-title">Past Winners</h2>
-      <div class="testimonial-container">
-        <div class="testimonial-card">
-          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="testimonial-avatar">
-          <div class="testimonial-text">"I couldn't believe I won! The tech bundle completely upgraded my setup. The laptop is incredibly fast, and the smartphone has an amazing camera!"</div>
-          <h4 class="testimonial-name">Sarah Johnson</h4>
-          <p class="testimonial-role">January 2024 Winner</p>
+    
+    <div class="card">
+      <!-- Walmart gift card image -->
+      <div style="width: 100%; max-width: 500px; height: 300px; background: linear-gradient(135deg, #0071ce, #005da3); border-radius: 18px; margin-bottom: 20px; display: flex; flex-direction: column; justify-content: space-between; padding: 25px; color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.3); position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%);"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; z-index: 1;">
+          <div style="font-size: 1.8rem; font-weight: 700;">Walmart</div>
+          <div style="width: 50px; height: 35px; background: #ffc220; border-radius: 5px;"></div>
         </div>
-        <div class="testimonial-card">
-          <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Michael Chen" class="testimonial-avatar">
-          <div class="testimonial-text">"As a content creator, this prize package was a game-changer for me. The equipment is top-notch and has helped me take my work to the next level."</div>
-          <h4 class="testimonial-name">Michael Chen</h4>
-          <p class="testimonial-role">November 2023 Winner</p>
-        </div>
-        <div class="testimonial-card">
-          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jessica Williams" class="testimonial-avatar">
-          <div class="testimonial-text">"I've never won anything before this! The process was simple and the prizes arrived quickly. The headphones are my favorite - amazing sound quality!"</div>
-          <h4 class="testimonial-name">Jessica Williams</h4>
-          <p class="testimonial-role">August 2023 Winner</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section id="enter-now" class="cta-section">
-    <div class="container">
-      <h2 style="text-align:center;">Enter to Win Today!</h2>
-      <p style="text-align:center; margin-bottom: 30px;">Don't miss your chance to win this amazing tech bundle. Enter now!</p>
-      
-      <div class="locked-message" id="locked-message">
-        <i class="fas fa-lock" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
-        <h3>Complete the offer to unlock the entry form</h3>
-        <p>Click the "Enter Now" button above to complete the quick offer and unlock the entry form</p>
-      </div>
-      
-      <div class="entry-form-container" id="entry-form">
-        <form id="giveaway-form">
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" required placeholder="Enter your full name">
+        <div style="font-family: monospace; font-size: 1.5rem; letter-spacing: 3px; text-align: center; z-index: 1;">$100 Gift Card</div>
+        <div style="display: flex; justify-content: space-between; z-index: 1;">
+          <div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">CARD HOLDER</div>
+            <div>YOUR NAME</div>
           </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" required placeholder="Enter your email address">
+          <div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">VALID THRU</div>
+            <div>12/25</div>
           </div>
-          <button type="submit" class="btn">Submit Entry</button>
-        </form>
-        <div class="confirmation" id="confirmation">
-          <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--secondary); margin-bottom: 15px;"></i>
-          <h3>Entry Submitted Successfully!</h3>
-          <p>We've sent a confirmation email to your inbox. Good luck!</p>
         </div>
       </div>
+      
+      <p><strong>Reward Value:</strong> $100 Walmart Gift Card</p>
+      <a href="#" class="cta-btn" id="ctaBtn">Continue to Offer</a>
+      <p style="font-size: 0.9rem; margin-top: 15px; opacity: 0.7;">Limited spots available. Offer expires soon.</p>
     </div>
-  </section>
-
-  <!-- CPA Locker Modal -->
-  <div id="locker-modal" class="locker-modal">
-    <div class="locker-content">
-      <button class="close-modal" id="close-locker">&times;</button>
-      <h2 style="text-align: center; margin-bottom: 20px; color: var(--accent);">Complete to Unlock</h2>
-      <p style="text-align: center; margin-bottom: 20px;">Please complete the quick offer below to unlock the entry form</p>
-      
-      <div class="locker-iframe-container">
-        <iframe id="locker-iframe" src="https://bestlocker.eu/iframe/0ac03b86-7c5f-11f0-bb3c-8a5fb7be40ea"></iframe>
+    
+    <div class="countdown">
+      Offer expires in: <span id="timer">05:00</span>
+    </div>
+    
+    <div class="testimonials">
+      <h3 class="testimonial-title">What Winners Say</h3>
+      <div>
+        <div class="testimonial-item">"I received my $100 Walmart card in minutes! Used it for groceries the same day." — <strong>Sarah L.</strong></div>
+        <div class="testimonial-item">"This actually works! Can't believe I won. The process was super easy." — <strong>Jason K.</strong></div>
+        <div class="testimonial-item">"I've earned multiple gift cards through this program. Legit and fast!" — <strong>Michael R.</strong></div>
       </div>
-      
-      <p class="locker-instructions">After completion, close this window to return to the entry form</p>
+    </div>
+    
+    <div class="trust">
+      <div class="trust-badge"><i class="fas fa-lock"></i></div>
+      <div class="trust-badge"><i class="fas fa-shield-alt"></i></div>
+      <div class="trust-badge"><i class="fas fa-check-circle"></i></div>
     </div>
   </div>
-
-  <!-- Footer -->
+  
   <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-column">
-          <h3>WinTech Giveaways</h3>
-          <p>We offer exciting tech giveaways with amazing prizes. Enter for your chance to win today!</p>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-        <div class="footer-column">
-          <h3>Quick Links</h3>
-          <ul class="footer-links">
-            <li><a href="#prize">Current Giveaway</a></li>
-            <li><a href="#how-to-enter">How to Enter</a></li>
-            <li><a href="#testimonials">Past Winners</a></li>
-            <li><a href="#enter-now">Enter Now</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Legal</h3>
-          <ul class="footer-links">
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Official Rules</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>&copy; 2024 WinTech Giveaways. All rights reserved.</p>
-      </div>
-    </div>
+    © 2025 Reward Program. This promotion is not affiliated with Walmart.
   </footer>
 
+  <!-- Loading Screen -->
+  <div id="loadingScreen">
+    <div id="loadingMessage">Initializing encrypted handshake…</div>
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Confetti Container -->
+  <div class="confetti-container" id="confettiContainer"></div>
+
   <script>
-    // Mobile menu toggle
-    document.getElementById('mobile-menu').addEventListener('click', function() {
-      document.getElementById('nav-links').classList.toggle('active');
-    });
-
-    // Countdown timer
-    function updateCountdown() {
-      const now = new Date();
-      const endDate = new Date(now.getFullYear(), now.getMonth() + 1, 1); // Set to 1st of next month
-      
-      const diff = endDate - now;
-      
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      
-      document.getElementById('days').textContent = days.toString().padStart(2, '0');
-      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-    }
-    
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // CPA Locker Modal
-    const lockerModal = document.getElementById("locker-modal");
-    const entryForm = document.getElementById("entry-form");
-    const lockedMessage = document.getElementById("locked-message");
-    const openLockerBtn = document.getElementById("open-locker");
-    const closeLockerBtn = document.getElementById("close-locker");
-    
-    // Initially hide the form and show locked message
-    entryForm.style.display = "none";
-    lockedMessage.classList.remove("hidden");
-    
-    // Check if user has already completed the offer (from localStorage)
-    if (localStorage.getItem('offerCompleted')) {
-      entryForm.style.display = "block";
-      lockedMessage.classList.add("hidden");
-    }
-    
-    openLockerBtn.addEventListener("click", function(e) {
-      e.preventDefault();
-      lockerModal.classList.add("show");
-    });
-    
-    closeLockerBtn.addEventListener("click", function() {
-      lockerModal.classList.remove("show");
-    });
-    
-    // Close modal when clicking outside
-    window.addEventListener("click", function(e) {
-      if (e.target === lockerModal) {
-        lockerModal.classList.remove("show");
+    // Countdown Timer
+    let timeLeft = 300;
+    const timer = document.getElementById('timer');
+    const timerInterval = setInterval(() => {
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        timer.textContent = "EXPIRED";
+        timer.style.color = "#ff5555";
+        return;
       }
-    });
-    
-    // Listen for messages from the iframe (if the locker supports it)
-    window.addEventListener('message', function(event) {
-      // For security, verify the origin if possible
-      // if (event.origin !== "https://bestlocker.eu") return;
-      
-      if (event.data === 'offerCompleted') {
-        // Unlock the form
-        entryForm.style.display = "block";
-        lockedMessage.classList.add("hidden");
-        lockerModal.classList.remove("show");
-        
-        // Store in localStorage so form remains unlocked
-        localStorage.setItem('offerCompleted', 'true');
-      }
-    });
-    
-    // Fallback: Check if the iframe URL changes (some lockers redirect upon completion)
-    let lastIframeUrl = '';
-    setInterval(() => {
-      try {
-        const iframe = document.getElementById('locker-iframe');
-        const currentUrl = iframe.contentWindow.location.href;
-        
-        if (currentUrl !== lastIframeUrl) {
-          lastIframeUrl = currentUrl;
-          
-          // If the URL changes to a completion page (this will vary by locker)
-          if (currentUrl.includes('complete') || currentUrl.includes('success')) {
-            // Unlock the form
-            entryForm.style.display = "block";
-            lockedMessage.classList.add("hidden");
-            lockerModal.classList.remove("show");
-            
-            // Store in localStorage
-            localStorage.setItem('offerCompleted', 'true');
-          }
-        }
-      } catch (e) {
-        // Cross-origin errors are expected, ignore them
-      }
+      timeLeft--;
+      let m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+      let s = (timeLeft % 60).toString().padStart(2, '0');
+      timer.textContent = `${m}:${s}`;
     }, 1000);
 
-    // Google Sheets Submission
-    document.getElementById('giveaway-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
+    // Confetti Function
+    function createConfetti() {
+      const container = document.getElementById('confettiContainer');
+      const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
       
-      // Show loading state
-      const submitBtn = this.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-      submitBtn.disabled = true;
-      
-      try {
-        // Using FormData approach as it's more reliable for Google Apps Script
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('email', email);
+      for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
         
-        await fetch("https://script.google.com/macros/s/AKfycbwiv68IDmp2W1_ipYJMwIJ0Q9OEAAUphDAW6OAUn03utdehPft4JxFHn2yePe2OIgkH/exec", {
-          method: "POST",
-          body: formData
+        container.appendChild(confetti);
+        
+        const animation = confetti.animate([
+          { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+          { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+        ], {
+          duration: Math.random() * 3000 + 2000,
+          easing: 'cubic-bezier(0.1, 0.2, 0.8, 0.9)'
         });
         
-        document.getElementById('confirmation').classList.add('show');
-        this.reset();
+        animation.onfinish = () => {
+          confetti.remove();
+        };
+      }
+    }
+
+    // Verification Flow
+    const messages = [
+      'Initializing encrypted handshake…',
+      'Scanning user session…',
+      'Verifying node integrity…',
+      'Checking reward vault…',
+      'Unlocking digital gift package…'
+    ];
+    
+    const cta = document.getElementById('ctaBtn');
+    const loadingScreen = document.getElementById('loadingScreen');
+    const loadingMessage = document.getElementById('loadingMessage');
+    let verificationDone = false;
+    
+    cta.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (verificationDone) return;
+      verificationDone = true;
+      
+      // Create confetti
+      createConfetti();
+      
+      // Show loading screen
+      loadingScreen.style.visibility = 'visible';
+      loadingScreen.style.opacity = '1';
+      
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < messages.length) {
+          loadingMessage.textContent = messages[i];
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 800);
+      
+      setTimeout(() => {
+        loadingMessage.textContent = 'Access Granted! Redirecting...';
+        loadingMessage.style.color = '#00f0ff';
+        loadingMessage.style.fontSize = '2.5rem';
         
-        // Hide the form after successful submission
-        this.style.display = 'none';
-      } catch (error) {
-        alert("Error submitting entry. Please try again.");
-      } finally {
-        // Reset button state
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+        setTimeout(() => {
+          loadingScreen.style.opacity = '0';
+          loadingScreen.style.visibility = 'hidden';
+          // Redirect to CPA offer
+          window.location.href = 'https://rileymarker.com/show.php?l=0&u=1037818&id=69867';
+        }, 1500);
+      }, 5000);
+    });
+
+    // TikTok-like swipe functionality
+    let startY = 0;
+    document.body.addEventListener('touchstart', e => {
+      startY = e.touches[0].clientY;
+    });
+    
+    document.body.addEventListener('touchend', e => {
+      const endY = e.changedTouches[0].clientY;
+      if (startY - endY > 80) {
+        window.scrollBy({ top: 500, behavior: 'smooth' });
       }
     });
   </script>
